@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buscar</title>
+    <link rel="stylesheet" href="buscar.css">
+</head>
+<body>
+    <div>
+        <button onclick="window.history.back()" >voltar</button>
+    </div>
+
+    <h1>lista de motos</h1>
+    <div class="info" id="info"></div>
+    <div>
+        <table class="moto" id="motos" title="moto">
+            <thead>
+                <tr>
+                    <th>V</th>
+                    <th>id</th>
+                    <th>modelo</th>
+                    <th>placa</th>
+                    <th>cidade</th>
+                    <th>ano</th>
+                    <th>cor</th>
+                    <th>km</th>
+                    <th>comprada</th>
+                    <th>data comprada</th>
+                    <th>vendida</th>
+                    <th>data vendida</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="moto" items="${moto}">
+                    <tr >
+                        <td>baixa</td>
+                        <td id="id">id</td>
+                        <td>modelo</td>
+                        <td>placa</td>
+                        <td>cidade</td>
+                        <td>ano</td>
+                        <td>cor</td>
+                        <td>km</td>
+                        <td>comprada</td>
+                        <td>datacompra</td>
+                        <td>vendida</td>
+                        <td>datavenda</td>
+                    </tr>
+                    
+                </c:forEach>
+            </tbody>
+        </table>
+    <dialog id="modeloeditar">editar modelo
+            <div>
+                <label for="modelo">Qual é o modelo:</label>
+                    <div class="modelo">
+                        <select name="modelo" id="modelo" title="Modelo da motocicleta">
+                            <option value="biz">Biz</option>
+                            <option value="pop">Pop</option>
+                            <option value="start">Start</option>
+                            <option value="fan">Fan</option>
+                            <option value="titan">Titan</option>
+                            <option value="bros">Bros</option>
+                            <option value="xre">Xre</option>
+                            <option value="shineray">Shineray</option>
+                        </select>
+                         <select name="cc" id="cc" title="Cilindrada em cc">
+                            <option value="100">100</option>
+                            <option value="110">110</option>
+                            <option value="125">125</option>
+                            <option value="150">150</option>
+                            <option value="160">160</option>
+                            <option value="190">190</option>
+                            <option value="50">50</option>
+                        </select>
+                        <select name="versao" id="versao" title="Versão da motocicleta">
+                            <option value="i">i</option>
+                            <option value="ks">KS</option>
+                            <option value="es">ES</option>
+                            <option value="esd">ESD</option>
+                            <option value="ex">EX</option>
+                        </select>
+                    </div>
+                    <label for="placa">Placa :</label>
+                    <div class="placa">
+                        <input type="text" name="letra" id="letra" placeholder="letra" oninput="movenext(this,'numeros')" size="3" maxlength="3">-
+                        <input type="text" name="numeros"id="numeros" placeholder="numeros" size="4" maxlength="4" oninput="movenext(this,'uf')">
+                            <select name="uf" id="uf" title="uf">
+                                <option value="se">SE</option>
+                                <option value="ba">BA</option>
+                                <option value="al">AL</option>
+                            </select>
+                    </div>
+                    <label for="cidade">cidade</label>
+                        <div class="cidade">
+                            <input type="text" name="cidade" id="cidade" placeholder="qual é a cidade" >
+                            km : <input type="number" name="km" id="km" placeholder="km" size="7" step="1000">     
+                        </div>
+                    <label for="cor">cor</label>
+                <div class="cor">
+                    <select name="cor" id="cor">
+                        <option value="preta">Preta</option>
+                        <option value="vermelha">Vermelha</option>
+                        <option value="azul">Azul</option>
+                        <option value="branca">Branca</option>
+                        <option value="prata">Prata</option>
+                        <option value="verde">Verde</option>
+                        <option value="amarela">Amarela</option>
+                        <option value="laranja">Laranja</option>
+                        <option value="roxa">Roxa</option>
+                        <option value="rosa">rosa</option>
+                    </select>
+                </div>
+                <label for="anos"></label>
+                <div class="anos">Ano fabricado
+                    <input type="number" name="ano fabricado" id="anofabricado" min="1985" max="2099" step="1" value="2010" title="anofabricado">
+                    Ano modelo
+                    <input type="number" name="ano modelo" id="anomodelo" min="1985" max="2099" step="1" value="2010" title="anomodelo">
+                </div>
+                <div>
+
+                   <div>
+                    <h1></h1>
+                </div>
+                <label for="comprador">A moto foi comprada a:</label>
+                <div class="comprada">
+                    <input type="text" name="comprador" id="comprador" oninput="movenext(this,'refcomprador');" placeholder="comprador">
+                    <input type="text" name="refcomprador" id="refcomprador" oninput="this.value=this.value.toUpperCase();" placeholder = "referencia comprador" >
+                        <div class="data comprada">
+                            <input type="date" name="data comprada" id="dtcomp" title="dtcomp">
+                            <input type="number" name="preco comprada" id="vlcomp" size="6" min="2000" placeholder="valor comprada" step="500" title="preco comprada">
+                        </div>
+                </div>
+
+                 <div><h1></h1></div>
+                <div class="dadosvendida">
+                    <label for="vendida"> A moto foi vendida<input type="checkbox" name="btnvenda" id="btnvenda"> </label>
+                    <div class="dadosvenda" id="dadosvenda" >
+                        <input type="text" name="vendida" id="vendida" oninput="this.value=this.value.toUpperCase()" placeholder="vendida á">
+                        <input type="text" name="refvendida" id="refvendida" oninput="this.value=this.value.toUpperCase()" placeholder="referencia de venda">
+                            <div>
+                                <input type="date" name="datavenda" id="datavenda" title="dtvend">
+                                <input type="number" name="precovendida" id="valorvenda" min="0" size="6" placeholder="valor vendida" step="500" title="preco vendida">
+                            </div>
+                    </div>
+                </div>
+
+                <div class="acessorio">
+                    <input type="checkbox" name="jogoderoda" id="jogoderoda" title="jogoderoda"> Tem Jogo de Roda
+                </div>
+
+            </div>
+        <div class="botoes">
+            <button type="submit">Salvar</button>
+            <button type="button" id="btnCancelar">Cancelar</button>
+        </div>
+    </dialog> 
+    </div>
+    <script src="scriptbsc.js"></script>
+</body>
+</html>
