@@ -1,19 +1,20 @@
  :root {
     --border: #7a3fa0;
     --accent: #5e0080;
+    
 }
  
+  
  body{
-   
     align-items: center;
     justify-content: center;
     background: linear-gradient(to right,rgb(94, 0, 128),rgb(229, 94, 247));
  }
  h1{
-display: flex;
-justify-content: center;
+  align-items: center;    
+  justify-content: center;
  }
- table {
+ table {  
             width: 80%;
             margin: 20px auto;
             border-collapse: collapse;
@@ -72,4 +73,9 @@ tr.row-details td {
     max-height: 150px;
     padding: 10px 12px;
   }
-  
+
+.dadosvenda{
+    pointer-events: none;
+    display: block;
+    opacity: 0.5;
+}

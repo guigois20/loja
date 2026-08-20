@@ -52,6 +52,24 @@ let api = fetch('http://localhost:8080/moto')
 .catch(error => console.error("erro na tabela",error));
 */
 
+
+//checar se o veiculo foi vendido
+const checkvenda = document.getElementById("btnvenda");
+const dadosvenda = document.getElementById("dadosvenda");
+
+checkvenda.addEventListener("change",()=>{
+    if (checkvenda.checked) {
+        dadosvenda.style.display="block";
+        dadosvenda.style.opacity="1";
+        dadosvenda.style.pointerEvents="auto";
+    }else{
+        dadosvenda.style.display="block";
+        dadosvenda.style.opacity="0.5";
+        dadosvenda.style.pointerEvents="none";
+    }
+});
+
+
 //selecionar linha
 
 document.querySelectorAll("#motos tbody tr").forEach(function(row) {
@@ -80,7 +98,7 @@ document.querySelectorAll("#motos tbody tr").forEach(function(row) {
 
 const motosMock = [
     {
-        baixa: 1,
+        baixa: 0,
         id: 1,
         modelo: "pop110i",
         placa: "ABC-1C34",
@@ -317,11 +335,31 @@ function preencherform(moto){
     const jgroda=!!moto.jogoderoda;
     document.getElementById("jogoderoda").checked=jgroda;
 
+    if(checkvenda.checked){
+        dadosvenda.style.display="block";
+        dadosvenda.style.opacity="1";
+        dadosvenda.style.pointerEvents="auto";
+    }else{
+        dadosvenda.style.display="block";
+        dadosvenda.style.opacity="0.5";
+        dadosvenda.style.pointerEvents="none";
+    }
+
+
     document.getElementById("modeloeditar").showModal();
 }
 
-
+//atualizar modelo
+document.getElementById("btnsalvar").addEventListener("click",()=>{
+    return atualizarmodelo();
+})
 // fechar modal no botão cancelar
 document.getElementById("btnCancelar").addEventListener("click", () => {
     document.getElementById("modeloeditar").close();
 });
+
+function atualizarmodelo(){
+
+
+    
+}
