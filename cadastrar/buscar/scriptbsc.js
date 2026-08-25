@@ -1,4 +1,4 @@
-const MODO_TESTE = true; // muda pra false quando for usar a API de verdade
+const MODO_TESTE = false; // muda pra false quando for usar a API de verdade
 const url = 'http://localhost:8080/moto';
 
 /*
@@ -113,7 +113,7 @@ const motosMock = [
         datavenda: "2026-08-18",
         refcomprada: null,
         refvendida: null,
-        valorcompra: 13000,
+        valorcomprada: 13000,
         valorvenda: 14000,
         jogoderoda: true,
     },
@@ -133,7 +133,7 @@ const motosMock = [
         datavenda: "2026-08-18",
         refcomprada: "DE LAGARTO",
         refvendida: "DA SALOBRA",
-        valorcompra: 13000,
+        valorcomprada: 13000,
         valorvenda: 14000,
         jogoderoda: true,
     }
@@ -153,52 +153,55 @@ async function carregarMotos() {
                 tbody.innerHTML = "";
                 data.forEach(moto => {
                     const row = document.createElement("tr");
-                    row.innerHTML = `
+        row.dataset.id = moto.id;
+        row.className = "modelo";
+        row.innerHTML = `
         <td>${moto.baixa ? "vendida" : "disponivel"}</td>
         <td>${moto.id}</td>
         <td>${moto.modelo}</td>
         <td>${moto.placa}</td>
         <td>${moto.cidade}</td>
-        <td>${moto.anofabricado + "/" + moto.anomodelo}</td>
+        <td>${moto.anofabricado+"/"+moto.anomodelo}</td>
         <td>${moto.cor}</td>
         <td>${moto.km}</td>
         <td>${moto.comprada}</td>
-        <td>${moto.datacompra}</td>
+        <td>${moto.datacomprada}</td>
         <td>${moto.vendida}</td>
         <td>${moto.datavenda}</td>
-        `;;
-                    const dadosocultos = document.createElement("tr");
-                    dadosocultos.className = "row-details";
-                    dadosocultos.dataset.id = moto.id;
-                    dadosocultos.innerHTML = `
-        <td colspan="11 ">
+        `;
+        const dadosocultos = document.createElement("tr");
+        dadosocultos.className = "row-details";
+        dadosocultos.dataset.id = moto.id;
+        dadosocultos.innerHTML = `
+        <td colspan="12">
             <div class="details">
                 ${moto.refcomprada == null ? "" : " ref. comprador : " + moto.refcomprada + " - "}
                 ${moto.refvendida == null ? "" : " refvendida : " + moto.vendida + " - "}
-                preco compra : ${moto.valorcompra}- 
+                preco compra : ${moto.valorcomprada}- 
                 preco venda : ${moto.valorvenda}- 
-                jogo de roda : ${moto.jogoderoda ? " tem" : " nao tem"}-
-                <td><div class="editar"><button class="editar">editar</button></div></td>
-            </div>   
+                jogo de roda : ${moto.jogoderoda ? " tem" : " nao "}
+                <button class="editar">editar</button>
+            </div>
         </td>
-        
+
     `;
 
-                    row.addEventListener("click", () => {
-                        row.classList.toggle("open");
-                        dadosocultos.classList.toggle("open");
-                    })
+        row.addEventListener("click", () => {
+            row.classList.toggle("open");
+            dadosocultos.classList.toggle("open");
+        })
 
 
-                    tbody.appendChild(row);
-                    tbody.appendChild(dadosocultos);
-                    console.log("tabela carregada");
-                });
-            })
+        tbody.appendChild(row);
+        tbody.appendChild(dadosocultos);
+        console.log("tabela carregada");
+    });
+})
             .catch(error => console.error("erro na tabela", error));
         return await resposta.json();
     }
 }
+
 
 async function renderizarMotos() {
     const motos = await carregarMotos();
@@ -229,11 +232,11 @@ async function renderizarMotos() {
         dadosocultos.innerHTML = `
         <td colspan="12">
             <div class="details">
-                ${moto.refcomprada == null ? "" : " ref. comprador : " + moto.refcomprada + " - "}
+                ${moto.refcomprada == null ? "" : " ref. comprador : " + moto.refcomprada + "- \n"}
                 ${moto.refvendida == null ? "" : " refvendida : " + moto.vendida + " - "}
-                preco compra : ${moto.valorcompra}- 
+                preco compra : ${moto.valorcomprada}- 
                 preco venda : ${moto.valorvenda}- 
-                jogo de roda : ${moto.jogoderoda ? " tem" : " nao tem"}-
+                jogo de roda : ${moto.jogoderoda ? " tem" : " nao"}
                 <button class="editar">editar</button>
             </div>
         </td>
@@ -305,7 +308,7 @@ function preencherform(moto) {
     const partes = placa.split("-");
     const letras = partes[0];
     const numeros = partes[1];
-    const ano = moto.anof;
+    const ano = MODO_TESTE? moto.anof:moto.anofabricado+"/"+moto.anomodelo;
     const anop = ano.split("/");
     const anofab = anop[0];
     const anomod = anop[1];
@@ -324,7 +327,7 @@ function preencherform(moto) {
 
     document.getElementById("comprador").value = moto.comprada || "";
     document.getElementById("refcomprador").value = moto.refcomprada || "";
-    document.getElementById("vlcomp").value = moto.valorcompra || 0;
+    document.getElementById("vlcomp").value = moto.valorcomprada || 0;
     document.getElementById("dtcomp").value = moto.datacompra || "";
 
     const baixada = !!moto.baixa;
@@ -350,7 +353,8 @@ function preencherform(moto) {
     document.getElementById("modeloeditar").showModal();
 }
 
-//atualizar modelo
+    //atualizar modelo
+
 document.getElementById("btnsalvar").addEventListener("click", () => {
     return atualizarmodelo();
 })
@@ -362,9 +366,7 @@ document.getElementById("btnCancelar").addEventListener("click", () => {
 function atualizarmodelo() {
 
     const id = document.getElementById("idEdit").value;
-    const modelo = document.getElementById("modelo").value;
-    const cc = document.getElementById("cc").value;
-    const versao=document.getElementById("versao").value;
+    const modelo = document.getElementById("modelo").value+document.getElementById("cc").value+document.getElementById("versao").value;
     const placa=document.getElementById("letra").value+"-"+document.getElementById("numeros").value;
     const uf=document.getElementById("uf").value;
     const cidade=document.getElementById("cidade").value;
@@ -373,10 +375,10 @@ function atualizarmodelo() {
     const anofabricado=document.getElementById("anofabricado").value;
     const anomodelo=document.getElementById("anomodelo").value;
 
-    const comprador=document.getElementById("comprador").value;
-    const refcomprador=document.getElementById("refcomprador").value;
-    const datacompra=document.getElementById("dtcomp").value;
-    const valorcompra=document.getElementById("vlcomp").value;
+    const comprada=document.getElementById("comprador").value;
+    const refcomprada=document.getElementById("refcomprador").value;
+    const datacomprada=document.getElementById("dtcomp").value;
+    const valorcomprada=document.getElementById("vlcomp").value;
 
     const baixa=document.getElementById("btnvenda").checked;
     const vendida=document.getElementById("vendida").value;
@@ -389,8 +391,6 @@ function atualizarmodelo() {
     const moto = {
         id,
         modelo,
-        cc,
-        versao,
         placa,
         uf,
         cidade,
@@ -398,10 +398,10 @@ function atualizarmodelo() {
         cor,
         anofabricado,
         anomodelo,
-        comprador,
-        refcomprador,
-        datacompra,
-        valorcompra,
+        comprada,
+        refcomprada,
+        datacomprada,
+        valorcomprada,
         baixa,
         vendida,
         refvendida,
@@ -421,18 +421,20 @@ function atualizarmodelo() {
         });
     }else {
         fetch(url+"/"+id,{
-            METHOD:"PUT",
+            method:"PUT",
             headers:{"Accept":"application/json",
             "Content-Type":"application/json"
-        }})
+        },
+            body:motojson
+    })
         .then(response=>response.json())
-        .then(data=>console.log("sucesso",data))
+        .then(data=>console.log("sucesso",data),
+        document.getElementById("modeloeditar").close(),
+        mostrarsucesso("atualizado com sucesso"))
         .catch(error=>console.log("erro ao atualizar",error));
     }
-    
-    
-    
-    
+
+
 
     console.log(moto)
 }

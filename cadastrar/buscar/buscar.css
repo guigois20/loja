@@ -72,6 +72,8 @@ tr.row-details td {
   tr.row-details.open .details {
     max-height: 150px;
     padding: 10px 12px;
+    justify-content: center;
+    align-items:center ;
   }
 
 .dadosvenda{

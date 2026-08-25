@@ -66,7 +66,7 @@ document.getElementById("btncadastrar").addEventListener("click",()=>{
             vendida=null;
             refvendida=null;
             datavenda=null;
-            valorvenda=null;
+            valorvenda=0;
         }
 
 
