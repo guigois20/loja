@@ -123,7 +123,7 @@ const motosMock = [
         modelo: "fan160es",
         placa: "QKB-9G57",
         uf: "ba",
-        cidade: "PARIPIRANGA",
+        cidade: "PARIPIRANGA/BA",
         anof: "2025/2026",
         cor: "branca",
         km: 5000,
@@ -176,7 +176,7 @@ async function carregarMotos() {
         <td colspan="12">
             <div class="details">
                 ${moto.refcomprada == null ? "" : " ref. comprador : " + moto.refcomprada + " - "}
-                ${moto.refvendida == null ? "" : " refvendida : " + moto.vendida + " - "}
+                ${moto.refvendida == null ? "" : " refvendida : " + moto.refvendida + " - "}
                 preco compra : ${moto.valorcomprada}- 
                 preco venda : ${moto.valorvenda}- 
                 jogo de roda : ${moto.jogoderoda ? " tem" : " nao "}
@@ -312,14 +312,19 @@ function preencherform(moto) {
     const anop = ano.split("/");
     const anofab = anop[0];
     const anomod = anop[1];
+    const city=moto.cidade;
+    const cityp=city.split("/");
+    const cidade=cityp[0];
+    const uf=cityp[1];
+
 
     document.getElementById("modelo").value = modelo || "";
     document.getElementById("cc").value = cc || "";
     document.getElementById("versao").value = versao || "";
     document.getElementById("letra").value = letras || "";
     document.getElementById("numeros").value = numeros || "";
-    document.getElementById("uf").value = moto.uf;
-    document.getElementById("cidade").value = moto.cidade || "";
+    document.getElementById("uf").value = uf;
+    document.getElementById("cidade").value = cidade || "";
     document.getElementById("km").value = moto.km || "";
     document.getElementById("cor").value = moto.cor || "";
     document.getElementById("anofabricado").value = anofab || "";
@@ -328,7 +333,7 @@ function preencherform(moto) {
     document.getElementById("comprador").value = moto.comprada || "";
     document.getElementById("refcomprador").value = moto.refcomprada || "";
     document.getElementById("vlcomp").value = moto.valorcomprada || 0;
-    document.getElementById("dtcomp").value = moto.datacompra || "";
+    document.getElementById("dtcomp").value = moto.datacomprada || "";
 
     const baixada = !!moto.baixa;
     document.getElementById("btnvenda").checked = baixada;
@@ -336,6 +341,7 @@ function preencherform(moto) {
     document.getElementById("refvendida").value = moto.refvendida || "";
     document.getElementById("valorvenda").value = moto.valorvenda || "";
     document.getElementById("datavenda").value = moto.datavenda || "";
+
     const jgroda = !!moto.jogoderoda;
     document.getElementById("jogoderoda").checked = jgroda;
 
@@ -368,23 +374,34 @@ function atualizarmodelo() {
     const id = document.getElementById("idEdit").value;
     const modelo = document.getElementById("modelo").value+document.getElementById("cc").value+document.getElementById("versao").value;
     const placa=document.getElementById("letra").value+"-"+document.getElementById("numeros").value;
-    const uf=document.getElementById("uf").value;
-    const cidade=document.getElementById("cidade").value;
+    
+    const cidade=document.getElementById("cidade").value+"/"+document.getElementById("uf").value;;
+
     const km=document.getElementById("km").value;
     const cor=document.getElementById("cor").value;
     const anofabricado=document.getElementById("anofabricado").value;
     const anomodelo=document.getElementById("anomodelo").value;
 
     const comprada=document.getElementById("comprador").value;
-    const refcomprada=document.getElementById("refcomprador").value;
+    const refcomprada = null ? null : document.getElementById("refcomprador").value;
     const datacomprada=document.getElementById("dtcomp").value;
     const valorcomprada=document.getElementById("vlcomp").value;
 
-    const baixa=document.getElementById("btnvenda").checked;
-    const vendida=document.getElementById("vendida").value;
-    const refvendida=document.getElementById("refvendida").value;
-    const datavenda=document.getElementById("datavenda").value;
-    const valorvenda=document.getElementById("valorvenda").value;
+    if(checkvenda.checked){
+        baixa=document.getElementById("btnvenda").checked;
+        vendida=document.getElementById("vendida").value;
+        refvendida = null ? null :document.getElementById("refvendida").value;
+        datavenda=document.getElementById("datavenda").value;
+        valorvenda=document.getElementById("valorvenda").value;
+    }else{
+        baixa=false;
+        vendida=null;
+        refvendida=null;
+        datavenda=null;
+        valorvenda=0;
+    }
+    
+    
     const jogoderoda=document.getElementById("jogoderoda").checked;
 
     
@@ -392,7 +409,6 @@ function atualizarmodelo() {
         id,
         modelo,
         placa,
-        uf,
         cidade,
         km,
         cor,

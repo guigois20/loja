@@ -33,16 +33,16 @@ document.getElementById("btncadastrar").addEventListener("click",()=>{
     const cc=document.getElementById("cc").value;
     const versao=document.getElementById("versao").value;
     const placa=document.getElementById("letra").value+"-"+document.getElementById("numeros").value;
-    const uf=document.getElementById("uf").value;
-    const cidade=document.getElementById("cidade").value;
+    const cidade=document.getElementById("cidade").value+"/"+document.getElementById("uf").value;
     const km=document.getElementById("km").value;
     const cor=document.getElementById("cor").value;
     const anofabricado=document.getElementById("anofabricado").value;
     const anomodelo=document.getElementById("anomodelo").value;
     const comprada=document.getElementById("comprador").value;
     const refcomprada=document.getElementById("refcomprador").value;
-    const datacompra=document.getElementById("dtcomp").value;
+    const datacomprada=document.getElementById("dtcomp").value;
     const valorcompra=document.getElementById("vlcomp").value;
+    
     let baixa=false;
 
     const jogo=document.getElementById("jogoderoda");
@@ -75,7 +75,6 @@ document.getElementById("btncadastrar").addEventListener("click",()=>{
     cc,
     versao,
     placa,
-    uf,
     cidade,
     km,
     cor,
@@ -83,7 +82,7 @@ document.getElementById("btncadastrar").addEventListener("click",()=>{
     anomodelo,
     comprada,
     refcomprada,
-    datacompra,
+    datacomprada,
     valorcompra,
     vendida,
     refvendida,
@@ -113,7 +112,7 @@ const motosjson=JSON.stringify(motos,null,2);
     alert("cadastrado com sucesso")
 
 //para testar na pagina
-document.getElementById("teste").innerText=motosjson;
+//document.getElementById("teste").innerText=motosjson;
 
 })
 
