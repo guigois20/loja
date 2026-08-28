@@ -1,58 +1,54 @@
-.dadosvenda{
-    opacity: 0.5;
-    display: block;
-    pointer-events: none;
+.dadosvenda {
+  opacity: 0.5;
+  display: block;
+  pointer-events: none;
 }
 
-.cadastrar{
-    display: flex;
-    font: bold;
-    font-style: italic;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+.cadastrar {
+  display: flex;
+  font: bold;
+  font-style: italic;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-h1{
-    align-items: center;
-    justify-content: center;
-    padding-left: 4rem;
+h1 {
+  align-items: center;
+  justify-content: center;
+  padding-left: 4rem;
 }
-.tipo{
-   
-    background: radial-gradient(rgb(141, 114, 250),rgb(178, 159, 255));
-    max-width: 400px;
-    max-height: fit-content;
-    align-items: center;
-    justify-content:right;
-    padding-left: 25px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    border-radius: 4%;
+.tipo {
+  background: radial-gradient(rgb(141, 114, 250), rgb(178, 159, 255));
+  max-width: 400px;
+  max-height: fit-content;
+  align-items: center;
+  justify-content: right;
+  padding-left: 25px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  border-radius: 4%;
 }
 
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right,rgb(94, 0, 128),rgb(229, 94, 247));
-    
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, rgb(94, 0, 128), rgb(229, 94, 247));
 }
-.butoes{display: flex;
-    justify-content: center;
-    align-items: center;
-   
-
+.butoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.btncadastrar{
-    display: flex;
-    font-size: 150%;
-    align-items: center;
-    justify-content: center;
+.btncadastrar {
+  display: flex;
+  font-size: 150%;
+  align-items: center;
+  justify-content: center;
 }
-.btnbuscarcl{
-    
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
+.btnbuscarcl {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }

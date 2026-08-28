@@ -1,83 +1,82 @@
- :root {
-    --border: #7a3fa0;
-    --accent: #5e0080;
-    
+:root {
+  --border: #7a3fa0;
+  --accent: #5e0080;
 }
- 
-  
- body{
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right,rgb(94, 0, 128),rgb(229, 94, 247));
- }
- h1{
-  align-items: center;    
+
+body {
+  align-items: center;
   justify-content: center;
- }
- table {  
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            text-align: center;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-        th {
-            background-color: rgb(178, 98, 249);
-            color: white;
-        } 
-tbody{
-    background: radial-gradient(rgb(168, 77, 248),rgb(204, 152, 250));
-    color: rgb(0, 0, 0);
+  background: linear-gradient(to right, rgb(94, 0, 128), rgb(229, 94, 247));
+}
+h1 {
+  align-items: center;
+  justify-content: center;
+}
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+th {
+  background-color: rgb(178, 98, 249);
+  color: white;
+}
+tbody {
+  background: radial-gradient(rgb(168, 77, 248), rgb(204, 152, 250));
+  color: rgb(0, 0, 0);
 }
 
 #motos tbody tr.selected {
-    background-color: rgb(178, 98, 249);
-  }
-  #motos tbody tr:hover {
-    cursor: pointer;
-    background-color:rgb(178, 98, 249);
-  }
-  
-  .info{
-    background-color: aliceblue;
-  }
+  background-color: rgb(178, 98, 249);
+}
+#motos tbody tr:hover {
+  cursor: pointer;
+  background-color: rgb(178, 98, 249);
+}
 
-  tr.dadosocultos td{
-   padding: 0;
-    border-bottom: 1px solid var(--border);
-  }
+.info {
+  background-color: aliceblue;
+}
+
+tr.dadosocultos td {
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
 tr.row-details td {
-    padding: 0;
-    border: none;
-    line-height: 0;   /* zera a altura "fantasma" da célula quando fechada */
+  padding: 0;
+  border: none;
+  line-height: 0; /* zera a altura "fantasma" da célula quando fechada */
 }
 
-  .details{
-    max-height: 0;
-    display: flex;
-    overflow: hidden;
-    transition: max-height 0.25s ease;
-    padding: 0 12;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .details .editar {
-    margin-left: auto;   /* garante que ele vá pro canto direito mesmo com flex-wrap */
-    flex-shrink: 0;
+.details {
+  max-height: 0;
+  display: flex;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+  padding: 0 12;
+  color: var(--accent);
+  font-weight: 600;
+}
+.details .editar {
+  margin-left: auto; /* garante que ele vá pro canto direito mesmo com flex-wrap */
+  flex-shrink: 0;
 }
 
-  tr.row-details.open .details {
-    max-height: 150px;
-    padding: 10px 12px;
-    justify-content: center;
-    align-items:center ;
-  }
+tr.row-details.open .details {
+  max-height: 150px;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+}
 
-.dadosvenda{
-    pointer-events: none;
-    display: block;
-    opacity: 0.5;
+.dadosvenda {
+  pointer-events: none;
+  display: block;
+  opacity: 0.5;
 }
